@@ -120,7 +120,8 @@ target_compile_definitions(AudioPluginTransferFunc
 
 juce_add_binary_data(AudioPluginTransferFunc-binary 
     SOURCES 
-        ../Resources/images/LogoJadeHochschuleTrans.png)
+        ../Resources/images/LogoJadeHochschuleTrans.png
+        ../Resources/images/AboutBox.jpg)
 
 
 if( UNIX AND NOT APPLE )

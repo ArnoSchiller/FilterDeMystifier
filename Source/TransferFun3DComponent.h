@@ -53,6 +53,7 @@ public:
         m_minImag = -1.5; // std::max(paramPoleImag.minValue, paramZeroImag.minValue);
 
         m_appClass.updateData = [this]() {updateData();};
+        m_appClass.logoPressed = [this]() {if(logoPressed!=nullptr) logoPressed();};
         m_appClass.updateData();
 
         addAndMakeVisible(m_appClass);
@@ -96,6 +97,8 @@ public:
         // writeDataToFile(m_valuesToPlot);
         
     }
+
+    std::function<void()> logoPressed;
 
 private:
 

@@ -27,6 +27,11 @@ MainComponent::MainComponent(AudioProcessorValueTreeState& vts, PresetHandler& p
     addAndMakeVisible(m_3DComponent);
     addAndMakeVisible(m_bodeComponent);
 
+    addAndMakeVisible(m_aboutBox);
+    deactivateAboutBox();
+
+    m_3DComponent.logoPressed = [this]() { activateAboutBox(); };
+    m_aboutBox.componentPressed = [this]() { deactivateAboutBox(); };
 }
 
 MainComponent::~MainComponent()
@@ -51,7 +56,7 @@ void MainComponent::paint(Graphics& g)
 
 void MainComponent::resized()
 {
-    auto bounds = getBounds();
+    auto bounds = getLocalBounds();
     if (bounds.getWidth() < m_minWidth)
         bounds.setWidth(m_minWidth);
     if (bounds.getHeight() < m_minHeight)
@@ -62,6 +67,8 @@ void MainComponent::resized()
     m_pnComponent.setBounds(bounds.removeFromLeft(0.4 * bounds.getWidth()));
     m_bodeComponent.setBounds(bounds.removeFromBottom(0.3 * bounds.getHeight()));
     m_3DComponent.setBounds(bounds);
+
+    m_aboutBox.setBounds(getLocalBounds());
 }
 
 void MainComponent::updateGUI()
@@ -71,4 +78,16 @@ void MainComponent::updateGUI()
     m_pnComponent.updatePlot();
     m_3DComponent.setSomethingChanged();
     repaint();
+}
+
+void MainComponent::activateAboutBox()
+{
+    m_3DComponent.setVisible(false);
+    m_aboutBox.setVisible(true);
+}
+
+void MainComponent::deactivateAboutBox()
+{
+    m_3DComponent.setVisible(true);
+    m_aboutBox.setVisible(false);
 }
