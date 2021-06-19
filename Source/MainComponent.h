@@ -24,9 +24,10 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "AboutBoxComponent.h"
+#include "BodeDiagramComponent.h"
 #include "PresetHandler.h" 
 #include "PNComponent.h"
-#include "BodeDiagramComponent.h"
 #include "TransferFun3DComponent.h"
 #include "PluginProcessor.h"
 
@@ -52,6 +53,8 @@ public:
 private:
     //==========================================================================
     
+    AboutBoxComponent m_aboutBox;
+
     TransferFunAudioPlugInAudioProcessor& m_processor;
     AudioProcessorValueTreeState& m_vts;
     PresetComponent m_presetGUI;
@@ -70,5 +73,8 @@ private:
 
     void updateGUI();
     
+    void activateAboutBox();
+    void deactivateAboutBox();
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

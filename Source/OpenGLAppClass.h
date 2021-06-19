@@ -70,6 +70,9 @@
     your controls and content
 */
 
+
+#define LOGO_SCALE_X 0.15
+
 class OpenGLAppClass : public juce::OpenGLAppComponent
 {
 public:
@@ -78,6 +81,8 @@ public:
     //==============================================================================
     Draggable3DOrientation m_draggableOrientation;
     float m_scale = 0.5;
+
+    std::function<void()> logoPressed;
 
     OpenGLAppClass(float minZ, float maxZ, std::vector<std::vector<float>>& pointsMatrix)
         : m_maxValueZ(maxZ), m_minValueZ(minZ), m_pointsMatrix(pointsMatrix)
@@ -146,11 +151,30 @@ public:
         return rotationMatrix * viewMatrix;
         
     }
-/*     void mouseDown(const MouseEvent& e)
+    void mouseDown(const MouseEvent& e)
     {
-        m_draggableOrientation.mouseDown(e.getPosition());
+        //m_draggableOrientation.mouseDown(e.getPosition());
+        auto bounds = getLocalBounds();
+
+        int x = e.getMouseDownX();
+        int y = e.getMouseDownY();
+
+        auto img_ratio = m_JadeLogo.getWidth() / m_JadeLogo.getHeight();
+        int img_h = int(getHeight() * LOGO_SCALE_X);
+        int img_w = int(img_h * img_ratio);  
+
+        int logo_start_x = bounds.getWidth() - img_w;
+        int logo_end_x = bounds.getWidth();
+        int logo_start_y = 0;
+        int logo_end_y = img_h;
+
+        if( x > logo_start_x && x < logo_end_x && y > logo_start_y && y < logo_end_y)
+        {
+            if (logoPressed != nullptr)
+                logoPressed();
+        }
     
-    } */
+    } 
 
     void mouseDrag(const MouseEvent& e)
     {
@@ -167,6 +191,8 @@ public:
          if (m_scale <= -0.6)
              m_scale = -0.5;
     }
+
+    
 
     void render() override
     {
@@ -226,10 +252,11 @@ glEnable(GL_DEPTH_TEST);
 #define AXIS_LENGTH_ROTATED 20
 #define TEXT_HEIGHT 20
 #define TEXT_WIDTH 35
+
     void paint(Graphics& g) override
     {
         auto img_ratio = m_JadeLogo.getWidth() / m_JadeLogo.getHeight();
-        int img_h = int(getHeight() * 0.15);
+        int img_h = int(getHeight() * LOGO_SCALE_X);
         int img_w = int(img_h * img_ratio);       
         g.drawImage(m_JadeLogo, getWidth()-img_w, 0, img_w, img_h, 0, 0, m_JadeLogo.getWidth(), m_JadeLogo.getHeight());
 
