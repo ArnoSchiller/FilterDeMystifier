@@ -22,12 +22,12 @@
 //==============================================================================
 /**
 */
-class TransferFunAudioPlugInAudioProcessorEditor  : public AudioProcessorEditor
+class FilterDeMystifierAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    TransferFunAudioPlugInAudioProcessorEditor (TransferFunAudioPlugInAudioProcessor&,
+    FilterDeMystifierAudioProcessorEditor (FilterDeMystifierAudioProcessor&,
         AudioProcessorValueTreeState&, PresetHandler&);
-    ~TransferFunAudioPlugInAudioProcessorEditor();
+    ~FilterDeMystifierAudioProcessorEditor();
 
     //==============================================================================
     void paint (Graphics&) override;
@@ -44,7 +44,7 @@ private:
     AudioProcessorValueTreeState& m_vts;
     MainComponent m_mainGUI;
 
-    TransferFunAudioPlugInAudioProcessor& m_processor;
+    FilterDeMystifierAudioProcessor& m_processor;
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TransferFunAudioPlugInAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FilterDeMystifierAudioProcessorEditor)
 };

@@ -4,7 +4,7 @@
 # `project()` command. `project()` sets up some helpful variables that describe source/binary
 # directories, and the current project version. This is a standard CMake command.
 
-project(TRANSFERFUNCPLOTTER VERSION 0.0.1)
+project(FILTERDEMYSTIFIER VERSION 0.1.0)
 
 # `VST3_CATEGORIES`
 #  - Should be one or more, separated by spaces, of the following: `Fx`, `Instrument`, `Analyzer`,
@@ -22,7 +22,7 @@ project(TRANSFERFUNCPLOTTER VERSION 0.0.1)
 # add_compile_definitions(FACTORY_PRESETS) # use this if you have finally some presets to add (see binary files below)
 # add_compile_definitions(WITH_MIDIKEYBOARD)
 
-juce_add_plugin(AudioPluginTransferFunc
+juce_add_plugin(FilterDeMystifierPlugIn
     # VERSION ...                               # Set this if the plugin version is different to the project version
     # ICON_BIG ...                              # ICON_* arguments specify a path to an image file to use as an icon for the Standalone
     # ICON_SMALL ...
@@ -37,9 +37,9 @@ juce_add_plugin(AudioPluginTransferFunc
     AU_MAIN_TYPE "kAudioUnitType_Effect"
     COPY_PLUGIN_AFTER_BUILD TRUE               # Should the plugin be installed to a default location after building?
     PLUGIN_MANUFACTURER_CODE IHAJ               # A four-character manufacturer id with at least one upper-case character
-    PLUGIN_CODE tfp1                            # A unique four-character plugin id with at least one upper-case character
+    PLUGIN_CODE FDM1                            # A unique four-character plugin id with at least one upper-case character
     FORMATS AU VST3 Standalone                  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-    PRODUCT_NAME "TransferFuncVisualizer")     # The name of the final executable, which can differ from the target name
+    PRODUCT_NAME "FilterDeMystifier")     # The name of the final executable, which can differ from the target name
 #
 # `juce_generate_juce_header` will create a JuceHeader.h for a given target, which will be generated
 # into your build tree. This should be included with `#include <JuceHeader.h>`. The include path for
@@ -48,7 +48,7 @@ juce_add_plugin(AudioPluginTransferFunc
 # probably don't need to call this.
 
 # juce_generate_juce_header(AudioPluginExample)
-juce_generate_juce_header(AudioPluginTransferFunc)
+juce_generate_juce_header(FilterDeMystifierPlugIn)
 
 # `target_sources` adds source files to a target. We pass the target that needs the sources as the
 # first argument, then a visibility parameter for the sources which should normally be PRIVATE.
@@ -56,7 +56,7 @@ juce_generate_juce_header(AudioPluginTransferFunc)
 # CMake command.
 
 
-target_sources(AudioPluginTransferFunc
+target_sources(FilterDeMystifierPlugIn
     PRIVATE
         BodeMagnitudeComponent.cpp
         BodePhaseComponent.cpp
@@ -79,7 +79,7 @@ target_sources(AudioPluginTransferFunc
   
 
 
-target_compile_definitions(AudioPluginTransferFunc
+target_compile_definitions(FilterDeMystifierPlugIn
     PUBLIC
         # JUCE_WEB_BROWSER and JUCE_USE_CURL would be on by default, but you might not need them.
         JUCE_WEB_BROWSER=0  # If you remove this, add `NEEDS_WEB_BROWSER TRUE` to the `juce_add_plugin` call
@@ -118,21 +118,21 @@ target_compile_definitions(AudioPluginTransferFunc
 #    POSITION_INDEPENDENT_CODE TRUE)
 #endif()
 
-juce_add_binary_data(AudioPluginTransferFunc-binary 
+juce_add_binary_data(FilterDeMystifierPlugIn-binary 
     SOURCES 
         ../Resources/images/LogoJadeHochschuleTrans.png
         ../Resources/images/AboutBox.jpg)
 
 
 if( UNIX AND NOT APPLE )
-set_target_properties(AudioPluginTransferFunc-binary PROPERTIES
+set_target_properties(FilterDeMystifierPlugIn-binary PROPERTIES
     POSITION_INDEPENDENT_CODE TRUE)
 endif()
 
-target_link_libraries(AudioPluginTransferFunc
+target_link_libraries(FilterDeMystifierPlugIn
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
-        AudioPluginTransferFunc-binary
+        FilterDeMystifierPlugIn-binary
         juce::juce_audio_utils
         juce::juce_opengl        
     PUBLIC

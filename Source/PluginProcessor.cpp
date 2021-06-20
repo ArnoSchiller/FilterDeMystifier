@@ -15,7 +15,7 @@
 #include "PNParameter.h"
 
 //==============================================================================
-TransferFunAudioPlugInAudioProcessor::TransferFunAudioPlugInAudioProcessor()
+FilterDeMystifierAudioProcessor::FilterDeMystifierAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : m_limiter(), AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
@@ -60,17 +60,17 @@ TransferFunAudioPlugInAudioProcessor::TransferFunAudioPlugInAudioProcessor()
 }
 
 
-TransferFunAudioPlugInAudioProcessor::~TransferFunAudioPlugInAudioProcessor()
+FilterDeMystifierAudioProcessor::~FilterDeMystifierAudioProcessor()
 {
 }
 
 //==============================================================================
-const String TransferFunAudioPlugInAudioProcessor::getName() const
+const String FilterDeMystifierAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool TransferFunAudioPlugInAudioProcessor::acceptsMidi() const
+bool FilterDeMystifierAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -79,7 +79,7 @@ bool TransferFunAudioPlugInAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool TransferFunAudioPlugInAudioProcessor::producesMidi() const
+bool FilterDeMystifierAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -88,7 +88,7 @@ bool TransferFunAudioPlugInAudioProcessor::producesMidi() const
    #endif
 }
 
-bool TransferFunAudioPlugInAudioProcessor::isMidiEffect() const
+bool FilterDeMystifierAudioProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -97,27 +97,27 @@ bool TransferFunAudioPlugInAudioProcessor::isMidiEffect() const
    #endif
 }
 
-double TransferFunAudioPlugInAudioProcessor::getTailLengthSeconds() const
+double FilterDeMystifierAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int TransferFunAudioPlugInAudioProcessor::getNumPrograms()
+int FilterDeMystifierAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int TransferFunAudioPlugInAudioProcessor::getCurrentProgram()
+int FilterDeMystifierAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void TransferFunAudioPlugInAudioProcessor::setCurrentProgram (int index)
+void FilterDeMystifierAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const String TransferFunAudioPlugInAudioProcessor::getProgramName (int index)
+const String FilterDeMystifierAudioProcessor::getProgramName (int index)
 {
     if (index == 0)
         return "Init";
@@ -125,12 +125,12 @@ const String TransferFunAudioPlugInAudioProcessor::getProgramName (int index)
 }
 
 
-void TransferFunAudioPlugInAudioProcessor::changeProgramName (int index, const String& newName)
+void FilterDeMystifierAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void TransferFunAudioPlugInAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void FilterDeMystifierAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
 
     int nrofchannels = this->getMainBusNumInputChannels();
@@ -146,14 +146,14 @@ void TransferFunAudioPlugInAudioProcessor::prepareToPlay (double sampleRate, int
 
 }
 
-void TransferFunAudioPlugInAudioProcessor::releaseResources()
+void FilterDeMystifierAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool TransferFunAudioPlugInAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool FilterDeMystifierAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     ignoreUnused (layouts);
@@ -179,7 +179,7 @@ bool TransferFunAudioPlugInAudioProcessor::isBusesLayoutSupported (const BusesLa
 }
 #endif
 
-void TransferFunAudioPlugInAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void FilterDeMystifierAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
     for (unsigned int sossec = 0 ; sossec < m_nrofSOS ; ++sossec )
     {
@@ -297,20 +297,20 @@ void TransferFunAudioPlugInAudioProcessor::processBlock (AudioBuffer<float>& buf
 }
 
 //==============================================================================
-bool TransferFunAudioPlugInAudioProcessor::hasEditor() const
+bool FilterDeMystifierAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* TransferFunAudioPlugInAudioProcessor::createEditor()
+AudioProcessorEditor* FilterDeMystifierAudioProcessor::createEditor()
 {
-    return new TransferFunAudioPlugInAudioProcessorEditor (*this, *m_paramVTS,
+    return new FilterDeMystifierAudioProcessorEditor (*this, *m_paramVTS,
             m_presetHandler);
     }
     
 
 //==============================================================================
-void TransferFunAudioPlugInAudioProcessor::getStateInformation (MemoryBlock& destData)
+void FilterDeMystifierAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
@@ -320,7 +320,7 @@ void TransferFunAudioPlugInAudioProcessor::getStateInformation (MemoryBlock& des
     copyXmlToBinary(*xml, destData);
 }
 
-void TransferFunAudioPlugInAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void FilterDeMystifierAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -337,5 +337,5 @@ void TransferFunAudioPlugInAudioProcessor::setStateInformation (const void* data
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new TransferFunAudioPlugInAudioProcessor();
+    return new FilterDeMystifierAudioProcessor();
 }

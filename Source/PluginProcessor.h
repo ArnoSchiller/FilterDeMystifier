@@ -24,12 +24,12 @@
 //==============================================================================
 /**
 */
-class TransferFunAudioPlugInAudioProcessor  : public AudioProcessor
+class FilterDeMystifierAudioProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    TransferFunAudioPlugInAudioProcessor();
-    ~TransferFunAudioPlugInAudioProcessor();
+    FilterDeMystifierAudioProcessor();
+    ~FilterDeMystifierAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -84,5 +84,5 @@ private:
     BrickwallLimiter<float> m_limiter;
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TransferFunAudioPlugInAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FilterDeMystifierAudioProcessor)
 };

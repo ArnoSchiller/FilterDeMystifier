@@ -40,7 +40,7 @@ class MainComponent   : public Component
 {
 public:
     //==========================================================================
-    MainComponent(AudioProcessorValueTreeState&, PresetHandler&, TransferFunAudioPlugInAudioProcessor&);
+    MainComponent(AudioProcessorValueTreeState&, PresetHandler&, FilterDeMystifierAudioProcessor&);
     ~MainComponent();
 
     //==========================================================================
@@ -55,7 +55,7 @@ private:
     
     AboutBoxComponent m_aboutBox;
 
-    TransferFunAudioPlugInAudioProcessor& m_processor;
+    FilterDeMystifierAudioProcessor& m_processor;
     AudioProcessorValueTreeState& m_vts;
     PresetComponent m_presetGUI;
     

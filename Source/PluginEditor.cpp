@@ -16,7 +16,7 @@
 
 
 //==============================================================================
-TransferFunAudioPlugInAudioProcessorEditor::TransferFunAudioPlugInAudioProcessorEditor (TransferFunAudioPlugInAudioProcessor& p, 
+FilterDeMystifierAudioProcessorEditor::FilterDeMystifierAudioProcessorEditor (FilterDeMystifierAudioProcessor& p, 
     AudioProcessorValueTreeState& vts, PresetHandler& ph)
     : AudioProcessorEditor(&p), m_processor(p), m_vts(vts), m_mainGUI(vts, ph, p)
 {
@@ -31,18 +31,18 @@ TransferFunAudioPlugInAudioProcessorEditor::TransferFunAudioPlugInAudioProcessor
 
 }
 
-TransferFunAudioPlugInAudioProcessorEditor::~TransferFunAudioPlugInAudioProcessorEditor()
+FilterDeMystifierAudioProcessorEditor::~FilterDeMystifierAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void TransferFunAudioPlugInAudioProcessorEditor::paint (Graphics& g)
+void FilterDeMystifierAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 }
 
-void TransferFunAudioPlugInAudioProcessorEditor::resized()
+void FilterDeMystifierAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..

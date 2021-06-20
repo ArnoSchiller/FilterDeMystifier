@@ -34,7 +34,7 @@
 class PNComponent    : public Component
 {
 public:
-    PNComponent(AudioProcessorValueTreeState& vts, TransferFunAudioPlugInAudioProcessor& p)
+    PNComponent(AudioProcessorValueTreeState& vts, FilterDeMystifierAudioProcessor& p)
         : m_processor(p), m_vts(vts), m_pnPlot(vts), m_meter(p.m_meter), m_protectionGUI(vts)
 
     {
@@ -194,7 +194,7 @@ private:
 
     AudioProcessorValueTreeState& m_vts;
     
-    TransferFunAudioPlugInAudioProcessor& m_processor;
+    FilterDeMystifierAudioProcessor& m_processor;
     SimpleMeterComponent m_meter;
 
     PNParameter m_PNparam;

@@ -12,7 +12,7 @@
 #define GUI_ELEMENT_MIN_DISTANCE 5
 #define PRESETHANDLER_HEIGHT 30
 //==============================================================================
-MainComponent::MainComponent(AudioProcessorValueTreeState& vts, PresetHandler& ph, TransferFunAudioPlugInAudioProcessor& p)
+MainComponent::MainComponent(AudioProcessorValueTreeState& vts, PresetHandler& ph, FilterDeMystifierAudioProcessor& p)
     :m_vts(vts), m_processor(p), m_pnComponent(m_vts, p), m_presetGUI(ph), m_3DComponent(m_vts), 
     m_bodeComponent(m_vts, BodeDiagramComponent::LayoutTypes::horizontal)
 {
