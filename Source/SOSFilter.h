@@ -26,11 +26,11 @@ template <class T> class SOSFilter
 public:
     SOSFilter(){m_b0 = 1.0; m_b1 = 0.0; m_b2 = 0.0; m_a1 = 0.0; m_a2 = 0.0;
         m_b0Old = 1.0; m_b1Old = 0.0; m_b2Old = 0.0; m_a1Old = 0.0; m_a2Old = 0.0;
-   	    m_newCoeffs = false; setXFadeSamples(30); m_useNL = true; m_clipVal = 3.f;
+   	    m_newCoeffs = false; setXFadeSamples(30); m_useNL = true; m_clipVal = 20.f;
         reset(); };
     SOSFilter(T b0, T b1, T b2, T a1, T a2){m_b0 = b0; m_b1 = b1; m_b2 = b2; m_a1 = a1; m_a2 = a2;
         m_b0Old = b0; m_b1Old = b1; m_b2Old = b2; m_a1Old = a1; m_a2Old = a2;
-   	    m_newCoeffs = false; setXFadeSamples(30); m_useNL = true; m_clipVal = 3.f;
+   	    m_newCoeffs = false; setXFadeSamples(30); m_useNL = true; m_clipVal = 20.f;
         reset(); };
 
     void reset(){

@@ -17,13 +17,13 @@
 //#include <JuceHeader.h>
 
 template <class T> BrickwallLimiter<T>::BrickwallLimiter()
-:m_fs(48000.0),m_nrofchannels(2),m_Limit(1.0),m_attackTime_ms(2.0),m_releaseTime_ms(100.0),m_Gain(1.0),
+:m_fs(48000.0),m_nrofchannels(2),m_Limit(1.0),m_attackTime_ms(2.0),m_releaseTime_ms(2000.0),m_Gain(1.0),
 m_attackCounter(0),m_state(BrickwallLimiter::State::Off),m_bypass(false)
 {
     buildAndResetDelayLine();
 }
 template <class T> BrickwallLimiter<T>::BrickwallLimiter(T sampleRate)
-:m_fs(sampleRate),m_nrofchannels(2), m_Limit(1.0),m_attackTime_ms(2.0),m_releaseTime_ms(100.0),m_Gain(1.0),
+:m_fs(sampleRate),m_nrofchannels(2), m_Limit(1.0),m_attackTime_ms(2.0),m_releaseTime_ms(2000.0),m_Gain(1.0),
 m_attackCounter(0),m_state(BrickwallLimiter::State::Off),m_bypass(false)
 {
     buildAndResetDelayLine();
@@ -36,7 +36,7 @@ m_attackCounter(0),m_state(BrickwallLimiter::State::Off),m_bypass(false)
     buildAndResetDelayLine();
 }//*/
 
-double g_maxValLimit(1000.0);
+double g_maxValLimit(10000000.0);
 
 template <class T> int BrickwallLimiter<T>::processSamples(std::vector<std::vector<T>>& data)
 {

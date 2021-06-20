@@ -47,14 +47,14 @@ FilterDeMystifierAudioProcessor::FilterDeMystifierAudioProcessor()
     m_presetHandler.DeployFactoryPresets();
 #endif
     // if needed add categories
-    m_presetHandler.addCategory(StringArray("Unknown", "classic cut", "RBJ cookbook", "modern analog", "Synth"));
+    m_presetHandler.addCategory(StringArray("Classic Cut", "RBJ Cookbook", "Modern Analogue","Vocals", "Synth", "DSP Specialities"));
     // m_presets.addCategory(JadeSynthCategories);
 	m_presetHandler.loadfromFileAllUserPresets();    
 
     m_filter.resize(m_nrofinputchannels);
     for (unsigned int kk = 0; kk < m_nrofinputchannels ;++kk)
     {
-        m_filter[kk].resize(m_nrofSOS); // we will have 2 SOS filter per channel
+        m_filter[kk].resize(m_nrofSOS); // we will have 4 SOS filter per channel
     }
 
 }
@@ -141,7 +141,7 @@ void FilterDeMystifierAudioProcessor::prepareToPlay (double sampleRate, int samp
     m_data.resize(samplesPerBlock);
     m_limiter.prepareToPlay(sampleRate,nrofchannels);
 
-    m_limiter.setReleaseTime(200.f);
+    m_limiter.setReleaseTime(2000.f);
     m_meter.prepareToPlay(sampleRate,samplesPerBlock);
 
 }
@@ -181,6 +181,7 @@ bool FilterDeMystifierAudioProcessor::isBusesLayoutSupported (const BusesLayout&
 
 void FilterDeMystifierAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
+    bool poleProtect = m_paramVTS->getParameter(paramPoleProtectBool.ID)->getValue();
     for (unsigned int sossec = 0 ; sossec < m_nrofSOS ; ++sossec )
     {
         float b0 = 1.0,b1 = 0.0,b2 = 0.0,a1 = 0.0,a2 = 0.0;
@@ -238,9 +239,30 @@ void FilterDeMystifierAudioProcessor::processBlock (AudioBuffer<float>& buffer, 
             b1 *= gainlin;
             b2 *= gainlin; 
         }
-        m_filter[0][sossec].setCoeffs(b0,b1,b2,a1,a2);
-        m_filter[1][sossec].setCoeffs(b0,b1,b2,a1,a2);
-
+        if ((poleProtect == true) && a2 < 1)
+        {   
+            if ((isPoleConj > 0.5))
+            {
+                m_filter[0][sossec].setCoeffs(b0,b1,b2,a1,a2);
+                m_filter[1][sossec].setCoeffs(b0,b1,b2,a1,a2);
+            }
+            else
+            { 
+                if (abs(a1) < 0.998)
+                {
+                    m_filter[0][sossec].setCoeffs(b0,b1,b2,a1,a2);
+                    m_filter[1][sossec].setCoeffs(b0,b1,b2,a1,a2);
+                }
+            }
+        }
+        else 
+        {
+            if  (poleProtect == false)
+            {
+                m_filter[0][sossec].setCoeffs(b0,b1,b2,a1,a2);
+                m_filter[1][sossec].setCoeffs(b0,b1,b2,a1,a2);
+            }
+        }
     }
     bool bypassLimiter = m_paramVTS->getParameter(paramLimiterBool.ID)->getValue();
     m_limiter.setBypass(!bypassLimiter);
