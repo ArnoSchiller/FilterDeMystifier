@@ -191,7 +191,7 @@ void PNplot::paintZero(Graphics& g, float real, float imaginary, int index)
     g.drawEllipse(xPos - ZERO_DIAMETER / 2, yPos - ZERO_DIAMETER / 2, ZERO_DIAMETER, ZERO_DIAMETER, LINEWIDH_MEDIUM);
     if (index > 1 && index < 10)
     {
-        auto textX = xPos + POLE_DIAMETER / 2;
+        auto textX = xPos + POLE_DIAMETER / 4;
         auto textY = yPos + POLE_DIAMETER / 2;
         g.drawText(String(index), textX, textY, INDEX_SIZE, INDEX_SIZE, Justification::centred);
     }
@@ -207,7 +207,7 @@ void PNplot::paintPole(Graphics& g, float real, float imaginary, int index)
     if(index > 1 && index < 10)
     {
         auto textX = xPos + POLE_DIAMETER/2;
-        auto textY = yPos + POLE_DIAMETER/2;
+        auto textY = yPos + POLE_DIAMETER/4;
         g.drawText(String(index), textX, textY, INDEX_SIZE, INDEX_SIZE, Justification::centred);
     }
 }

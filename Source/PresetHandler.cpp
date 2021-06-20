@@ -470,6 +470,10 @@ void PresetComponent::itemchanged()
 	m_oldcatname = m_categoriesCombo.getItemText(catid);
 	m_presetHandler.loadPresetAndActivate(itemname);
 	m_somethingchanged = false;
+	
+	// update PN component
+	if(somethingChanged != nullptr) somethingChanged();
+
 }
 
 void PresetComponent::categorychanged()

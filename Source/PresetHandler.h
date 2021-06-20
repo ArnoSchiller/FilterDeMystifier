@@ -49,7 +49,6 @@ class PresetHandler
 public:
 //	const std::vector<std::string> Categories;
 
-
 	PresetHandler();
 	int setAudioValueTreeState(AudioProcessorValueTreeState* vts);
 	int addPreset(ValueTree& newpreset);
@@ -137,6 +136,8 @@ public:
 		m_somethingchanged = true; repaint();
 	};
 	void setNoCategory();
+	
+    std::function<void()> somethingChanged;
 
 private:
 	ComboBox m_presetCombo;

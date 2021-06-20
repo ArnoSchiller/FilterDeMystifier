@@ -19,9 +19,9 @@ MainComponent::MainComponent(AudioProcessorValueTreeState& vts, PresetHandler& p
     setSize(m_minWidth, m_minHeight);
     ScopedLock sp();
     m_pnComponent.somethingChanged = [this]() { updateGUI(); };
-    //m_presetGUI.somethingChanged = [this]() { updateGUI(); m_presetGUI.resetSomethingChanged();};
+    m_presetGUI.somethingChanged = [this]() { updateGUI(); m_pnComponent.updatePNComponent();};
 
-    setSamplingRate(48000.0f);
+    setSamplingRate(m_processor.getSampleRate()); 
     addAndMakeVisible(m_presetGUI);
     addAndMakeVisible(m_pnComponent);
     addAndMakeVisible(m_3DComponent);
