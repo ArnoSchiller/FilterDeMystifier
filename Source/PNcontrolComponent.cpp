@@ -202,6 +202,19 @@ void PNcontrolComponent::setConjugation(bool newValue)
         somethingChanged();
 }
 
+void PNcontrolComponent::setSliderValues(std::complex<float> newValue)
+    {
+        if (m_type == PNType::pole && !m_vts.getParameter(paramPoleConjugated.ID[m_index])->getValue())
+        {
+            m_PNimagSlider.setValue(0);
+        } else if (m_type == PNType::zero && !m_vts.getParameter(paramZeroConjugated.ID[m_index])->getValue()) { 
+            m_PNimagSlider.setValue(0);
+        } else {
+            m_PNimagSlider.setValue(newValue.imag());
+        }
+            
+        m_PNrealSlider.setValue(newValue.real());
+    };
 
 void PNcontrolComponent::statusButtonClicked()
 {
