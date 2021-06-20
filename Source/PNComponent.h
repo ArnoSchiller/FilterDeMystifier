@@ -71,6 +71,7 @@ public:
         addAndMakeVisible(m_meter);
 
         addAndMakeVisible(m_protectionGUI);
+        m_protectionGUI.protectPoles = [this]() {protectPoles();};
         
         m_b0Slider.setSliderStyle(Slider::SliderStyle::LinearBar);
         m_b0Slider.setColour(m_b0Slider.textBoxOutlineColourId, JadeGray);
@@ -243,6 +244,24 @@ private:
         if (object["z"] != -1)
             m_zeroControls[object["z"]]->setSliderValues(newValue);
     };
+
+    void protectPoles()
+    {
+        double max_r = 0.98;
+        for (int kk = 0; kk < MAX_POLE_INSTANCES; kk++)
+        {
+            double max_real = paramPoleReal.maxValue;
+            double max_imag = paramPoleImag.maxValue;
+            double real = m_vts.getParameter(paramPoleReal.ID[kk])->getValue() * 2*max_real - max_real;
+            double imag = m_vts.getParameter(paramPoleImag.ID[kk])->getValue();
+            double r = sqrt(real * real + imag * imag); 
+            if (r > max_r)
+            {
+                std::complex<float> newValue = 0.0;
+                m_poleControls[kk]->setSliderValues(newValue);
+            }
+        }
+    }
 
     int getFilterOrderFromParams()
     {

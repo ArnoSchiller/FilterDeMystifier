@@ -43,18 +43,7 @@ public:
                 updateButtons();
                 if(m_vts.getParameter(paramPoleProtectBool.ID)->getValue())
                 {
-                    double max_r = 0.98;
-                    for (int kk = 0; kk < MAX_POLE_INSTANCES; kk++)
-                    {
-                        double real = m_vts.getParameter(paramPoleReal.ID[kk])->getValue();
-                        double imag = m_vts.getParameter(paramPoleImag.ID[kk])->getValue();
-                        double r = sqrt(real * real + imag * imag); 
-                        if (r > max_r)
-                        {
-                            m_vts.getParameter(paramPoleReal.ID[kk])->setValue(real / (r/max_r));
-                            m_vts.getParameter(paramPoleImag.ID[kk])->setValue(imag / (r/max_r));
-                        }
-                    }
+                    if(protectPoles!=nullptr) protectPoles();
                 }
             };
 
@@ -111,7 +100,8 @@ public:
         
     };
 
-
+    std::function<void()> protectPoles;
+    
 private:
     AudioProcessorValueTreeState& m_vts;
 

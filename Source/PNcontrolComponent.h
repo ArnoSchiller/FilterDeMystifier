@@ -47,11 +47,7 @@ public:
     void paint(Graphics&) override;
     void resized() override;
 
-    void setSliderValues(std::complex<float> newValue)
-    {
-        m_PNimagSlider.setValue(newValue.imag());
-        m_PNrealSlider.setValue(newValue.real());
-    };
+    void setSliderValues(std::complex<float> newValue);
 
     void setAcivation(bool isActivated);
     void setConjugation(bool isActivated);
