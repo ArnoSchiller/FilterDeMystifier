@@ -48,7 +48,7 @@ public:
     void resized() override;
     
     //==========================================================================
-    void setSamplingRate(float fs) { m_bodeComponent.setSamplingRate(fs); }
+    void setSamplingRate(double fs) { m_bodeComponent.setSamplingRate(fs); }
 
 private:
     //==========================================================================

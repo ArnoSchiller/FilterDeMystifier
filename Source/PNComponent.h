@@ -77,7 +77,7 @@ public:
         m_b0Slider.onValueChange = [this]() {if (somethingChanged != nullptr) somethingChanged();};
         m_b0Attachment = std::make_unique<SliderAttachment>(m_vts, paramb0.ID, m_b0Slider);
         addAndMakeVisible(m_b0Slider);
-        m_b0Label.setText("g =", NotificationType::dontSendNotification);
+        m_b0Label.setText("Gain:", NotificationType::dontSendNotification);
         addAndMakeVisible(m_b0Label);
     }
 
@@ -108,7 +108,7 @@ public:
 
         auto configBounds = bounds.removeFromTop(bounds.getHeight()* 0.1);
         configBounds.reduce(7, 0);
-        m_filterOrderLabel.setBounds(configBounds.removeFromLeft(100));
+        m_filterOrderLabel.setBounds(configBounds.removeFromLeft(90));
         m_filterOrderMenu.setBounds(configBounds.removeFromLeft(60));
         configBounds.removeFromLeft(10);
         m_b0Label.setBounds(configBounds.removeFromLeft(40));
@@ -188,6 +188,12 @@ public:
         }
     }
 
+    void updatePNComponent()
+    {
+        int filterOrder = getFilterOrderFromParams();
+        m_filterOrderMenu.setSelectedItemIndex(filterOrder-1);
+    }
+
     std::function<void()> somethingChanged;
 
 private:
@@ -237,6 +243,22 @@ private:
         if (object["z"] != -1)
             m_zeroControls[object["z"]]->setSliderValues(newValue);
     };
+
+    int getFilterOrderFromParams()
+    {
+        int filterOrder = 0;
+        for (int kk = 0; kk < m_numOfPole; ++kk)
+        {
+            if (m_vts.getParameter(paramPoleBool.ID[kk])->getValue())
+            {
+                filterOrder += 1;
+                if (m_vts.getParameter(paramPoleConjugated.ID[kk])->getValue())
+                    filterOrder += 1;
+            } else {
+                return filterOrder;
+            }
+        }
+    }
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PNComponent)
 };
