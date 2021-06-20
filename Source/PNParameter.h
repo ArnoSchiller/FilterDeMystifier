@@ -103,8 +103,8 @@ const struct
 	const std::string ID = "b0Value";
 	std::string name = "g";
 	std::string unitName = " dB";
-	float minValue = -30.0f;
-	float maxValue = 10.0f;
+	float minValue = -60.0f;
+	float maxValue = 20.0f;
 	float defaultValue = 0.0f;
 }paramb0;
 
