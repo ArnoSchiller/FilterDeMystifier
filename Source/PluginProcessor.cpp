@@ -43,12 +43,12 @@ FilterDeMystifierAudioProcessor::FilterDeMystifierAudioProcessor()
         nullptr);
 
     m_presetHandler.setAudioValueTreeState(m_paramVTS.get());
-#ifdef FACTORY_PRESETS    
-    m_presetHandler.DeployFactoryPresets();
-#endif
     // if needed add categories
     m_presetHandler.addCategory(StringArray("Classic Cut", "Audio Filter", "Vocals", "Synth", "DSP Specialities"));
     // m_presets.addCategory(JadeSynthCategories);
+#ifdef FACTORY_PRESETS    
+    m_presetHandler.DeployFactoryPresets();
+#endif
 	m_presetHandler.loadfromFileAllUserPresets();    
 
     m_filter.resize(m_nrofinputchannels);

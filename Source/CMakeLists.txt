@@ -19,7 +19,7 @@ project(FILTERDEMYSTIFIER VERSION 0.1.0)
 #    `kAudioUnitType_MusicDevice`, `kAudioUnitType_MusicEffect`, `kAudioUnitType_OfflineEffect`,
 #    `kAudioUnitType_Output`, `kAudioUnitType_Panner`
 
-# add_compile_definitions(FACTORY_PRESETS) # use this if you have finally some presets to add (see binary files below)
+add_compile_definitions(FACTORY_PRESETS) # use this if you have finally some presets to add (see binary files below)
 # add_compile_definitions(WITH_MIDIKEYBOARD)
 
 juce_add_plugin(FilterDeMystifierPlugIn
@@ -106,9 +106,9 @@ target_compile_definitions(FilterDeMystifierPlugIn
 
 
 # use this code for binaries (e.g. presets)
-#file(GLOB TEMPLATE_RESOURCES_GLOB
-#  res/*.xml
-#  )
+file(GLOB FDM_RESOURCES_GLOB
+  ../Resources/presets/*.xml
+  )
 
 #juce_add_binary_data( AudioPluginJadeSpectrogram-binary
 #  SOURCES ${TEMPLATE_RESOURCES_GLOB}
@@ -120,6 +120,7 @@ target_compile_definitions(FilterDeMystifierPlugIn
 
 juce_add_binary_data(FilterDeMystifierPlugIn-binary 
     SOURCES 
+        ${FDM_RESOURCES_GLOB}
         ../Resources/images/LogoJadeHochschuleTrans.png
         ../Resources/images/AboutBox.jpg)
 
