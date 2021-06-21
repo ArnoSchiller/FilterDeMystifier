@@ -1,46 +1,15 @@
 # FilterDeMystifier
 Everyone knows audio filters and what they do with audio data. But how the different filters are built and how they work is not always easy to understand. The *FilterDeMystifier* helps to demystify the filters. The views of the filter structure up to the resulting transfer function help to understand their correlation. Custom filters can be created and the result can be interpreted auditorily and visually. 
 
-## Check, if everything is OK 
-Since you read this file, you unzipped the downloaded file.
+## Build
 
-The directory should contain:
-1. This README.md file
-2. A Manual.pdf file
+This plug-in is based on JUCE and its CMAKE support. If your are familiar with JUCE/CMAKE it is easy to bulid. Adjust the CMakeListFile.txt accordingly and your are done.
 
-for Mac/Linux
-3. a directory called FilterDeMystifier
+If you are not familiar with JUCE/CMAKE, I would recommend to start with the JUCE/CMAKE starter package from Joerg Bitzer
+(https://github.com/JoergBitzer/AudioDevOrga) and after you installed everything come back here.
 
-for Windows
-3. a file called FilterDeMystifier.vst3
-
-## Installation
-
-### Windows
-Copy the File (Windows) to C:\Program Files\Common Files\VST3
-
-### Mac VST3
-copy the whole directory to
-/Library/Audio/Plug-Ins/VST3
-or
-
-### Mac AU
-/Library/Audio/Plug-Ins/Components 
-
-### Linux
-copy the whole directory to
-/home/YOUR_USER_NAME/.vst3/
-
-Done! Start your DAW.
-
-Have fun and read the manual for instructions and some signal processing background.
-
-J. Bitzer aka audio-dsp 
 
 ## Source Code
-You can download the source code at GitHub. 
-
-https://github.com/ArnoSchiller/FilterDeMystifier
 
 The code is open source under a BSD 3-clause license.
 
