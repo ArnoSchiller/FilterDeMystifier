@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FilterDeMystefierVTS version="0.1.0" presetname="peak_simple" bank="User" category="Audio Filter">
+  <PARAM id="Pole1Bool" value="1.0"/>
+  <PARAM id="Pole1Conj" value="1.0"/>
+  <PARAM id="Pole1Imag" value="0.1880000084638596"/>
+  <PARAM id="Pole1Real" value="-0.9229999780654907"/>
+  <PARAM id="Pole2Bool" value="0.0"/>
+  <PARAM id="Pole2Conj" value="0.0"/>
+  <PARAM id="Pole2Imag" value="0.0"/>
+  <PARAM id="Pole2Real" value="0.1520000696182251"/>
+  <PARAM id="Pole3Bool" value="0.0"/>
+  <PARAM id="Pole3Conj" value="0.0"/>
+  <PARAM id="Pole3Imag" value="0.0"/>
+  <PARAM id="Pole3Real" value="1.192092895507812e-7"/>
+  <PARAM id="Pole4Bool" value="0.0"/>
+  <PARAM id="Pole4Conj" value="0.0"/>
+  <PARAM id="Pole4Imag" value="0.0"/>
+  <PARAM id="Pole4Real" value="1.192092895507812e-7"/>
+  <PARAM id="Zero1Bool" value="1.0"/>
+  <PARAM id="Zero1Conj" value="1.0"/>
+  <PARAM id="Zero1Imag" value="0.004000000189989805"/>
+  <PARAM id="Zero1Real" value="-0.8149999380111694"/>
+  <PARAM id="Zero2Bool" value="0.0"/>
+  <PARAM id="Zero2Conj" value="0.0"/>
+  <PARAM id="Zero2Imag" value="0.0"/>
+  <PARAM id="Zero2Real" value="0.218000054359436"/>
+  <PARAM id="Zero3Bool" value="0.0"/>
+  <PARAM id="Zero3Conj" value="0.0"/>
+  <PARAM id="Zero3Imag" value="0.0"/>
+  <PARAM id="Zero3Real" value="1.192092895507812e-7"/>
+  <PARAM id="Zero4Bool" value="0.0"/>
+  <PARAM id="Zero4Conj" value="0.0"/>
+  <PARAM id="Zero4Imag" value="0.0"/>
+  <PARAM id="Zero4Real" value="1.192092895507812e-7"/>
+  <PARAM id="b0Value" value="1.154006958007812"/>
+  <PARAM id="limiterBool" value="1.0"/>
+  <PARAM id="poleProtectBool" value="1.0"/>
+</FilterDeMystefierVTS>
