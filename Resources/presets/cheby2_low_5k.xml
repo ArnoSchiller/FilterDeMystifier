@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FilterDeMystefierVTS version="0.1.0" presetname="cheby2_low_5k" bank="User" category="Classic Cut">
+  <PARAM id="Pole1Bool" value="1.0"/>
+  <PARAM id="Pole1Conj" value="1.0"/>
+  <PARAM id="Pole1Imag" value="0.1710000038146973"/>
+  <PARAM id="Pole1Real" value="0.9140000343322754"/>
+  <PARAM id="Pole2Bool" value="1.0"/>
+  <PARAM id="Pole2Conj" value="1.0"/>
+  <PARAM id="Pole2Imag" value="0.06800000369548798"/>
+  <PARAM id="Pole2Real" value="0.8250000476837158"/>
+  <PARAM id="Pole3Bool" value="0.0"/>
+  <PARAM id="Pole3Conj" value="0.0"/>
+  <PARAM id="Pole3Imag" value="0.0"/>
+  <PARAM id="Pole3Real" value="0.9220001697540283"/>
+  <PARAM id="Pole4Bool" value="0.0"/>
+  <PARAM id="Pole4Conj" value="0.0"/>
+  <PARAM id="Pole4Imag" value="0.0"/>
+  <PARAM id="Pole4Real" value="0.9100000858306885"/>
+  <PARAM id="Zero1Bool" value="1.0"/>
+  <PARAM id="Zero1Conj" value="1.0"/>
+  <PARAM id="Zero1Imag" value="0.9930000305175781"/>
+  <PARAM id="Zero1Real" value="0.1190000772476196"/>
+  <PARAM id="Zero2Bool" value="1.0"/>
+  <PARAM id="Zero2Conj" value="1.0"/>
+  <PARAM id="Zero2Imag" value="0.6470000147819519"/>
+  <PARAM id="Zero2Real" value="0.7620000839233398"/>
+  <PARAM id="Zero3Bool" value="0.0"/>
+  <PARAM id="Zero3Conj" value="0.0"/>
+  <PARAM id="Zero3Imag" value="0.0"/>
+  <PARAM id="Zero3Real" value="1.192092895507812e-7"/>
+  <PARAM id="Zero4Bool" value="0.0"/>
+  <PARAM id="Zero4Conj" value="0.0"/>
+  <PARAM id="Zero4Imag" value="0.0"/>
+  <PARAM id="Zero4Real" value="1.192092895507812e-7"/>
+  <PARAM id="b0Value" value="-56.12999725341797"/>
+  <PARAM id="limiterBool" value="1.0"/>
+  <PARAM id="poleProtectBool" value="1.0"/>
+</FilterDeMystefierVTS>

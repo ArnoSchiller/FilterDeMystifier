@@ -47,7 +47,7 @@ FilterDeMystifierAudioProcessor::FilterDeMystifierAudioProcessor()
     m_presetHandler.DeployFactoryPresets();
 #endif
     // if needed add categories
-    m_presetHandler.addCategory(StringArray("Classic Cut", "RBJ Cookbook", "Modern Analogue","Vocals", "Synth", "DSP Specialities"));
+    m_presetHandler.addCategory(StringArray("Classic Cut", "Audio Filter", "Vocals", "Synth", "DSP Specialities"));
     // m_presets.addCategory(JadeSynthCategories);
 	m_presetHandler.loadfromFileAllUserPresets();    
 
