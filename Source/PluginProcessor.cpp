@@ -295,6 +295,9 @@ void FilterDeMystifierAudioProcessor::processBlock (AudioBuffer<float>& buffer, 
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+    
+    m_data.resize(buffer.getNumSamples());
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
