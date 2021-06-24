@@ -1,5 +1,5 @@
 # FilterDeMystifier
-Everyone knows audio filters and what they do with audio data. But how the different filters are built and how they work is not always easy to understand. The *FilterDeMystifier* helps to demystify the filters. The views of the filter structure up to the resulting transfer function help to understand their correlation. Custom filters can be created and the result can be interpreted auditorily and visually. 
+Everyone knows audio filters and what they do with audio data. But how the different filters are build and how they work is not always easy to understand. The *FilterDeMystifier* helps to demystify the filters. The views of the filter structure up to the resulting transfer function help to understand their interaction. Custom filters can be created and the result can be interpreted auditorily and visually. 
 
 ## Build
 
