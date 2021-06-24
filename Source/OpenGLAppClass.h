@@ -143,16 +143,29 @@ public:
         return juce::Matrix3D<float>::fromFrustum (-w, w, -h, h, 4.0f, 00.0f);  // [3]
     }
 
-    juce::Matrix3D<float> getViewMatrix() const
+    juce::Matrix3D<float> getViewMatrix() 
     {
-                Matrix3D<float> viewMatrix ({ 0.0f, 0.0f, -10.0f });
-                Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ 4.25f,  0.0f , 0.0f });
+        Matrix3D<float> viewMatrix ({ 0.0f, 0.0f, -10.0f });
+        m_angleX =  -M_PI*50.f/180.f;
+        m_angleY =  M_PI*10.f/180.f;
+        Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ m_angleX,  m_angleY , 0.0f });
 
         return rotationMatrix * viewMatrix;
-        
     }
+    juce::Matrix3D<float> addAngletoViewMatrix(float addX, float addY) 
+    {
+        Matrix3D<float> viewMatrix ({ 0.0f, 0.0f, -10.0f });
+        m_angleX +=  addX;
+        m_angleY +=  addY;
+        Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ m_angleX,  m_angleY , 0.0f });
+
+        return rotationMatrix * viewMatrix;
+    }
+  
     void mouseDown(const MouseEvent& e)
     {
+        m_dragx = 0;
+        m_dragy = 0;
         //m_draggableOrientation.mouseDown(e.getPosition());
         auto bounds = getLocalBounds();
 
@@ -179,10 +192,36 @@ public:
     void mouseDrag(const MouseEvent& e)
     {
       //  m_draggableOrientation.mouseDrag(e.getPosition());
-        Matrix3D<float> viewMatrix ({ 0.0f, 0.0f, -10.0f });
-        Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ ((float) e.getDistanceFromDragStartY() * 0.03f),  ((float) e.getDistanceFromDragStartX() * 0.03f), 0.0f });
- 
-        m_viewMatrix= rotationMatrix * viewMatrix;
+        juce::Point<int> pos = e.getPosition();
+
+        int deltaX = m_dragx - pos.getX();
+        int deltaY = m_dragy - pos.getY();
+        m_dragx = pos.getX();
+        m_dragy = pos.getY();
+
+        //Matrix3D<float> rotationMatrix = viewMatrix.rotation ({ ((float) e.getDistanceFromDragStartY() * 0.01f),  ((float) e.getDistanceFromDragStartX() * 0.01f), 0.0f });
+        float addX, addY;
+        float moveVel = 0.04;
+        if (abs(deltaX)<2)
+            addX = 0.00;
+        else
+        {   
+            if (deltaX>0)
+                addX = moveVel;
+            else
+                addX = -moveVel;
+        }
+        if (abs(deltaY)<2)
+            addY = 0.00;
+        else
+        {   
+            if (deltaY<0)
+                addY = moveVel;
+            else
+                addY = -moveVel;
+        }
+            
+        m_viewMatrix= addAngletoViewMatrix(addY,  -addX);
     }
 
     void mouseWheelMove(const MouseEvent&, const MouseWheelDetails& d) override
@@ -411,6 +450,8 @@ glEnable(GL_DEPTH_TEST);
 private:
 
     Matrix3D<float> m_viewMatrix = getViewMatrix();
+    float m_angleX, m_angleY;
+    int m_dragx,m_dragy;
     bool m_somethingChanged;
     float m_minValueZ;
     float m_maxValueZ;
