@@ -29,6 +29,8 @@ BodePhaseComponent::BodePhaseComponent(bool withAutoScale)
     m_minValueY = -180.0f;
     m_maxValueY = 180.0f;
     m_valueStepY = 90.0f;
+
+    addAndMakeVisible(m_logButton);
 }
 
 BodePhaseComponent::~BodePhaseComponent()
