@@ -36,6 +36,10 @@
 #define AXIS_TEXT_WIDTH 25
 #define AXIS_TEXT_HEIGHT 15
 
+#define BUTTON_WIDTH 35
+#define BUTTON_HEIGHT 25
+#define BUTTON_PADDING 5
+
 #define AXIS_DESCRIPTION_SPACE_HEIGHT (AXIS_TEXT_HEIGHT + AXIS_DESCRIPTION_HEIGHT)
 #define AXIS_DESCRIPTION_SPACE_WIDTH (AXIS_TEXT_WIDTH + AXIS_DESCRIPTION_HEIGHT)
 
@@ -54,11 +58,14 @@ public:
         m_minValueX(0.0), m_maxValueX(10.0), m_valueStepX(1.0),
         m_minValueY(0.0), m_maxValueY(10.0), m_valueStepY(1.0),
         m_axisLabelX("x-axis"), m_axisLabelY("y-axis"),
-        m_withAxisDescriotion(true), m_axisStyle(axisStyles::rect)
+        m_withAxisDescriotion(true), m_axisStyle(axisStyles::rect),
+        m_isLogScaleActivated(false)
     {
         // In your constructor, you should add any child components, and
         // initialise any special settings that your component needs.
-       
+        m_logButton.onClick = [this]() { changeFreqAxisScale(); };
+        m_logButton.setButtonText("lin");
+        m_logButton.setColour(TextButton::ColourIds::buttonColourId, Colours::darkgreen); 
     }
 
     ~ScaledPlot()
@@ -96,6 +103,8 @@ public:
         m_startPosY = r.getY() + PADDING;
         m_endPosX = r.getX() + r.getWidth() - PADDING;
         m_endPosY = r.getY() + r.getHeight() - PADDING - AXIS_DESCRIPTION_SPACE_HEIGHT;
+
+        m_logButton.setBounds(r.removeFromBottom(BUTTON_HEIGHT).removeFromLeft(BUTTON_WIDTH).reduced(BUTTON_PADDING));
     }
 
     void paint (Graphics& g) override
@@ -112,21 +121,43 @@ public:
         g.setColour(BorderColour);
         g.drawRect(getLocalBounds(), LINEWIDH_MEDIUM);
         
-        if (m_axisStyle == axisStyles::rect)
-            paintAxisRect(g);
-        if(m_axisStyle == axisStyles::classic)
-            paintAxis(g);
-
-        if (m_withAxisDescriotion)
-            addAxisDescription(g);
+        if(m_isLogScaleActivated)
+        {
+            paintAxisLog(g);
+        } else {
+            if (m_axisStyle == axisStyles::rect)
+                paintAxisRect(g);
+            if(m_axisStyle == axisStyles::classic)
+                paintAxis(g);
+        }
 
         g.setColour(PlotColour);
         scaleValuesToPath();
         if (!m_valuesToPlot.isEmpty())
             g.strokePath(m_valuesToPlot, PathStrokeType(1.0f));
+        
+        if (m_withAxisDescriotion)
+            addAxisDescription(g);
     }
 
 protected:
+
+    void changeFreqAxisScale()
+    {
+        m_isLogScaleActivated = !m_isLogScaleActivated;
+        if(m_isLogScaleActivated){
+            m_logButton.setButtonText("log");
+            m_maxValueX = log10(m_maxValueX);
+            m_minValueX = 1.0;
+        } else {
+            m_logButton.setButtonText("lin");
+            m_maxValueX = round(pow(10, m_maxValueX));
+            m_minValueX = 0.0;
+        }
+
+        repaint();
+    }
+
     void paintAxis(Graphics& g)
     {
         g.setColour(AxisPlotColour);
@@ -140,6 +171,15 @@ protected:
         Line<float> xAxis = Line<float>(m_startPosX, yPos, m_endPosX, yPos);
         g.drawLine(xAxis, LINEWIDH_BIG);
     }    
+
+    void paintAxisLog(Graphics& g)
+    {
+        g.setColour(AxisPlotColour);
+        g.drawRect(m_startPosX, m_startPosY, m_endPosX - m_startPosX,
+            m_endPosY - m_startPosY, LINEWIDH_BIG);
+
+        addAxisTicksLog(g);
+    }
     
     void paintAxisRect(Graphics& g)
     {
@@ -150,6 +190,48 @@ protected:
         addAxisTicksRect(g);
     }
 
+    void addAxisTicksLog(Graphics& g)
+    {
+        g.setFont(FontSize_small);
+     
+        // X axis
+        double valueX = m_minValueX;
+        while (valueX <= m_maxValueX)
+        {
+            int posX = scaleToCoordsX(valueX);
+            g.drawLine(posX, m_startPosY, posX, m_endPosY, LINEWIDH_MEDIUM);
+            g.drawText(String(valueX), posX - AXIS_TEXT_WIDTH / 2,
+                m_endPosY , AXIS_TEXT_WIDTH, AXIS_TEXT_HEIGHT, 
+                Justification::centred);
+
+            for(int kk = 1U; kk < 10;++kk)
+            {
+                double helpValX = valueX + log10(10 * kk) - 1.0;
+                if (helpValX > m_maxValueX) break;
+                int helpPosX = scaleToCoordsX(helpValX);
+                g.drawLine(helpPosX, m_startPosY, helpPosX, m_endPosY, LINEWIDH_SMALL);
+            }
+
+            valueX += 1.0;
+        }
+
+        // Y axis
+        float valueY = m_minValueY;
+        while (valueY <= m_maxValueY)
+        {
+            int posY = scaleToCoordsY(valueY);
+            if(valueY == 0)
+                g.drawLine(m_startPosX, posY, m_endPosX, posY, LINEWIDH_MEDIUM);
+            else
+                g.drawLine(m_startPosX, posY, m_endPosX, posY, LINEWIDH_SMALL);
+            g.drawText(String(valueY), m_startPosX - AXIS_TEXT_WIDTH,
+                posY- AXIS_TEXT_HEIGHT / 2, AXIS_TEXT_WIDTH-2, AXIS_TEXT_HEIGHT, 
+                Justification::centredRight);
+            valueY += m_valueStepY;
+        }
+    }
+
+    
     void addAxisTicksRect(Graphics& g)
     {
         g.setFont(FontSize_small);
@@ -243,6 +325,7 @@ protected:
 
         float scaleValue = (value - m_minValueX) / (m_maxValueX - m_minValueX);
         return  static_cast<int> (scaleValue * (m_endPosX - m_startPosX)) + m_startPosX;
+        
     }
 
     int scaleToCoordsY(float value)
@@ -259,14 +342,27 @@ protected:
     void scaleValuesToPath()
     {
         m_valuesToPlot.clear();
-        for (auto kk = 0U; kk < m_xValues.size(); ++kk)
+        if (m_isLogScaleActivated)
         {
-            int xPos = scaleToCoordsX(m_xValues[kk]);
-            int yPos = scaleToCoordsY(m_yValues[kk]);
-            if (kk == 0)
-                m_valuesToPlot.startNewSubPath(xPos, yPos);
-            else
-                m_valuesToPlot.lineTo(Point<float>(xPos, yPos));
+            for (auto kk = 0U; kk < m_xValues.size(); ++kk)
+            {
+                int xPos = scaleToCoordsX(log10(m_xValues[kk]));
+                int yPos = scaleToCoordsY(m_yValues[kk]);
+                if (kk == 0)
+                    m_valuesToPlot.startNewSubPath(xPos, yPos);
+                else
+                    m_valuesToPlot.lineTo(Point<float>(xPos, yPos));
+            }
+        } else {
+            for (auto kk = 0U; kk < m_xValues.size(); ++kk)
+            {
+                int xPos = scaleToCoordsX(m_xValues[kk]);
+                int yPos = scaleToCoordsY(m_yValues[kk]);
+                if (kk == 0)
+                    m_valuesToPlot.startNewSubPath(xPos, yPos);
+                else
+                    m_valuesToPlot.lineTo(Point<float>(xPos, yPos));
+            }
         }
     }
 
@@ -289,19 +385,22 @@ protected:
     int m_endPosY;
 
     // values
-    float m_minValueX;
-    float m_maxValueX;
-    float m_valueStepX;
+    double m_minValueX;
+    double m_maxValueX;
+    double m_valueStepX;
 
-    float m_minValueY;
-    float m_maxValueY;
-    float m_valueStepY;
+    double m_minValueY;
+    double m_maxValueY;
+    double m_valueStepY;
 
     std::vector<float> m_xValues;
     std::vector<float> m_yValues;
 
     // values to plot 
     Path m_valuesToPlot;
+
+    TextButton m_logButton;
+    bool m_isLogScaleActivated;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScaledPlot)

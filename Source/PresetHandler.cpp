@@ -471,11 +471,11 @@ void PresetComponent::itemchanged()
 	m_categoriesCombo.setSelectedItemIndex(catid);
 	m_oldcatname = m_categoriesCombo.getItemText(catid);
 	m_presetHandler.loadPresetAndActivate(itemname);
-	m_somethingchanged = false;
 	
 	m_presetHandler.setPoleProtection(true);
 	//m_presetHandler.setPoleProtection(m_presetHandler.getPoleProtection());
 
+	m_somethingchanged = false;
 	// update PN component
 	if(somethingChanged != nullptr) somethingChanged();
 }

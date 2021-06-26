@@ -28,6 +28,8 @@ BodeMagnitudeComponent::BodeMagnitudeComponent(bool withAutoScale)
     m_minValueY     = -60.0f;
     m_maxValueY     = 20.0f;
     m_valueStepY    = 20.0f;
+    
+    addAndMakeVisible(m_logButton);
 }
 
 BodeMagnitudeComponent::~BodeMagnitudeComponent()

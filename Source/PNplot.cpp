@@ -39,6 +39,8 @@ PNplot::PNplot(AudioProcessorValueTreeState& vts)
 
     m_selectedObject["p"] = -1;
     m_selectedObject["z"] = -1;
+
+    m_isLogScaleActivated = false;
 }
 
 PNplot::~PNplot()

@@ -140,7 +140,7 @@ public:
 				paramPoleReal.defaultValue,
 				paramPoleReal.unitName,
 				AudioProcessorParameter::genericParameter,
-				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String("Re=") + String(value, MaxLen);},
+				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String(value, MaxLen);},
 				[](const String& text) {return text.getFloatValue();} ));
 
 			paramVector.push_back(std::make_unique<AudioParameterFloat>(paramPoleImag.ID[kk],
@@ -149,7 +149,7 @@ public:
 				paramPoleImag.defaultValue,
 				paramPoleImag.unitName,
 				AudioProcessorParameter::genericParameter,
-				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String("Im=") + String(value, MaxLen);},
+				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String(value, MaxLen);},
 				[](const String& text) {return text.getFloatValue();}));
 
 			paramVector.push_back(std::make_unique<AudioParameterBool>(paramPoleConjugated.ID[kk],
@@ -174,7 +174,7 @@ public:
 				paramZeroReal.defaultValue,
 				paramZeroReal.unitName,
 				AudioProcessorParameter::genericParameter,
-				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String("Re=") + String(value, MaxLen);},
+				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String(value, MaxLen);},
 				[](const String& text) {return text.getFloatValue();}));
 
 			paramVector.push_back(std::make_unique<AudioParameterFloat>(paramZeroImag.ID[kk],
@@ -183,7 +183,7 @@ public:
 				paramZeroImag.defaultValue,
 				paramZeroImag.unitName,
 				AudioProcessorParameter::genericParameter,
-				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String("Im=") + String(value, MaxLen);},
+				[](float value, int MaxLen) {value = int(value * 1000) * 0.001; return String(value, MaxLen);},
 				[](const String& text) {return text.getFloatValue();}));
 			
 			paramVector.push_back(std::make_unique<AudioParameterBool>(paramZeroConjugated.ID[kk],
