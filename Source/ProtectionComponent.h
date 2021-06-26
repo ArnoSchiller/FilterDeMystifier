@@ -100,6 +100,8 @@ public:
         
     };
 
+    void updateProtectionGUI(){ updateButtons(); };
+
     std::function<void()> protectPoles;
     
 private:

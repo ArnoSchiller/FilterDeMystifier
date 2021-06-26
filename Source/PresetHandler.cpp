@@ -434,6 +434,8 @@ void PresetComponent::prevButtonClick()
 
 void PresetComponent::itemchanged()
 {
+	m_presetHandler.setPoleProtection(false);
+
 	repaint();
 	int id = m_presetCombo.getSelectedItemIndex();
 	String itemname;
@@ -471,9 +473,11 @@ void PresetComponent::itemchanged()
 	m_presetHandler.loadPresetAndActivate(itemname);
 	m_somethingchanged = false;
 	
+	m_presetHandler.setPoleProtection(true);
+	//m_presetHandler.setPoleProtection(m_presetHandler.getPoleProtection());
+
 	// update PN component
 	if(somethingChanged != nullptr) somethingChanged();
-
 }
 
 void PresetComponent::categorychanged()

@@ -31,6 +31,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "PNParameter.h"
 
 /*#include <juce_gui_extra/juce_gui_extra.h>
 #include <juce_gui_basics/juce_gui_basics.h>
@@ -90,6 +91,16 @@ public:
 			position = -1;
 			return false;
 	    }		
+	}
+
+	// methods to make sure the preset can be loaded 
+	bool getPoleProtection()
+	{
+		return m_vts->getParameter(paramPoleProtectBool.ID)->getValue();
+	}
+	void setPoleProtection(bool isActivated)
+	{
+		m_vts->getParameter(paramPoleProtectBool.ID)->setValue(isActivated);
 	}
 
 // new methods for categories
