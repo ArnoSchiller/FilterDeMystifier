@@ -193,6 +193,7 @@ public:
     {
         int filterOrder = getFilterOrderFromParams();
         m_filterOrderMenu.setSelectedItemIndex(filterOrder-1);
+        m_protectionGUI.updateProtectionGUI();
     }
 
     std::function<void()> somethingChanged;
