@@ -15,6 +15,7 @@
 #include "PNParameter.h"
 
 #define CTRL_PADDING 8
+#define LABEL_WIDTH 30
 
 PNcontrolComponent::PNcontrolComponent(AudioProcessorValueTreeState& vts,
     int index, PNcontrolComponent::PNType type)
@@ -106,6 +107,12 @@ PNcontrolComponent::PNcontrolComponent(AudioProcessorValueTreeState& vts,
 
     addAndMakeVisible(m_PNrealSlider);
     addAndMakeVisible(m_PNimagSlider);
+
+
+    m_realLabel.setText("Re:", NotificationType::dontSendNotification);
+    m_imagLabel.setText("Im:", NotificationType::dontSendNotification);    
+    addAndMakeVisible(m_realLabel);
+    addAndMakeVisible(m_imagLabel);
 }
 
 PNcontrolComponent::~PNcontrolComponent()
@@ -152,9 +159,13 @@ void PNcontrolComponent::resized()
     int sliderWidth = bounds.getWidth()/3;
     m_PNLabel.setBounds(bounds.removeFromLeft(labelWidth));
     bounds.removeFromLeft(CTRL_PADDING);
-    m_PNrealSlider.setBounds(bounds.removeFromLeft(sliderWidth));
+
+    m_realLabel.setBounds(bounds.removeFromLeft(LABEL_WIDTH));
+    m_PNrealSlider.setBounds(bounds.removeFromLeft(sliderWidth - LABEL_WIDTH));
     bounds.removeFromLeft(CTRL_PADDING);
-    m_PNimagSlider.setBounds(bounds.removeFromLeft(sliderWidth));
+
+    m_imagLabel.setBounds(bounds.removeFromLeft(LABEL_WIDTH));
+    m_PNimagSlider.setBounds(bounds.removeFromLeft(sliderWidth - LABEL_WIDTH));
     bounds.removeFromLeft(CTRL_PADDING);
     m_PNbutton.setBounds(bounds);
 }

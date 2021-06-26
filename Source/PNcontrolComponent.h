@@ -71,6 +71,9 @@ private:
     std::unique_ptr<SliderAttachment> m_PNrealAttachment;
     TextButton m_PNbutton;
 
+    Label m_realLabel;
+    Label m_imagLabel;
+
     bool m_isActivated = false;
     bool m_isConjugated = false;
 
