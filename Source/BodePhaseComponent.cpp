@@ -20,6 +20,7 @@ BodePhaseComponent::BodePhaseComponent(bool withAutoScale)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    m_axisLabelLogX = String("Frequency / Hz");
     m_axisLabelX = String("Frequency / kHz");
     m_minValueX = 0.0f;
     m_maxValueX = 10000.0f;
