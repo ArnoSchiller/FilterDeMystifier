@@ -3,15 +3,15 @@
 <FilterDeMystefierVTS version="0.1.0" presetname="ii" bank="User" category="Vocals">
   <PARAM id="Pole1Bool" value="1.0"/>
   <PARAM id="Pole1Conj" value="1.0"/>
-  <PARAM id="Pole1Imag" value="0.2710000276565552"/>
-  <PARAM id="Pole1Real" value="0.9430000782012939"/>
+  <PARAM id="Pole1Imag" value="0.3700000047683716"/>
+  <PARAM id="Pole1Real" value="0.9140000343322754"/>
   <PARAM id="Pole2Bool" value="1.0"/>
   <PARAM id="Pole2Conj" value="1.0"/>
-  <PARAM id="Pole2Imag" value="0.386000007390976"/>
-  <PARAM id="Pole2Real" value="0.9000000953674316"/>
-  <PARAM id="Pole3Bool" value="1.0"/>
-  <PARAM id="Pole3Conj" value="1.0"/>
-  <PARAM id="Pole3Imag" value="0.0430000014603138"/>
+  <PARAM id="Pole2Imag" value="0.04400000348687172"/>
+  <PARAM id="Pole2Real" value="0.9890000820159912"/>
+  <PARAM id="Pole3Bool" value="0.0"/>
+  <PARAM id="Pole3Conj" value="0.0"/>
+  <PARAM id="Pole3Imag" value="0.0"/>
   <PARAM id="Pole3Real" value="0.9860000610351562"/>
   <PARAM id="Pole4Bool" value="0.0"/>
   <PARAM id="Pole4Conj" value="0.0"/>
@@ -25,15 +25,15 @@
   <PARAM id="Zero2Conj" value="1.0"/>
   <PARAM id="Zero2Imag" value="0.0"/>
   <PARAM id="Zero2Real" value="1.192092895507812e-7"/>
-  <PARAM id="Zero3Bool" value="1.0"/>
-  <PARAM id="Zero3Conj" value="1.0"/>
+  <PARAM id="Zero3Bool" value="0.0"/>
+  <PARAM id="Zero3Conj" value="0.0"/>
   <PARAM id="Zero3Imag" value="0.0"/>
   <PARAM id="Zero3Real" value="1.192092895507812e-7"/>
   <PARAM id="Zero4Bool" value="0.0"/>
   <PARAM id="Zero4Conj" value="0.0"/>
   <PARAM id="Zero4Imag" value="0.0"/>
   <PARAM id="Zero4Real" value="1.192092895507812e-7"/>
-  <PARAM id="b0Value" value="-85.76899719238281"/>
+  <PARAM id="b0Value" value="-72.88499450683594"/>
   <PARAM id="limiterBool" value="1.0"/>
   <PARAM id="poleProtectBool" value="1.0"/>
 </FilterDeMystefierVTS>

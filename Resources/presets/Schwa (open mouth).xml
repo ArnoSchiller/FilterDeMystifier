@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<FilterDeMystefierVTS version="0.1.0" presetname="ee" bank="User" category="Vocals">
+<FilterDeMystefierVTS version="0.1.0" presetname="Schwa (open mouth)" bank="User" category="Vocals">
   <PARAM id="Pole1Bool" value="1.0"/>
   <PARAM id="Pole1Conj" value="1.0"/>
-  <PARAM id="Pole1Imag" value="0.1000000014901161"/>
-  <PARAM id="Pole1Real" value="0.9860000610351562"/>
+  <PARAM id="Pole1Imag" value="0.3180000185966492"/>
+  <PARAM id="Pole1Real" value="0.9380002021789551"/>
   <PARAM id="Pole2Bool" value="1.0"/>
   <PARAM id="Pole2Conj" value="1.0"/>
-  <PARAM id="Pole2Imag" value="0.3170000016689301"/>
-  <PARAM id="Pole2Real" value="0.9360001087188721"/>
-  <PARAM id="Pole3Bool" value="0.0"/>
-  <PARAM id="Pole3Conj" value="0.0"/>
-  <PARAM id="Pole3Imag" value="0.0"/>
-  <PARAM id="Pole3Real" value="0.9860000610351562"/>
+  <PARAM id="Pole2Imag" value="0.193000003695488"/>
+  <PARAM id="Pole2Real" value="0.9710001945495605"/>
+  <PARAM id="Pole3Bool" value="1.0"/>
+  <PARAM id="Pole3Conj" value="1.0"/>
+  <PARAM id="Pole3Imag" value="0.06500000506639481"/>
+  <PARAM id="Pole3Real" value="0.9880001544952393"/>
   <PARAM id="Pole4Bool" value="0.0"/>
   <PARAM id="Pole4Conj" value="0.0"/>
   <PARAM id="Pole4Imag" value="0.0"/>
@@ -25,15 +25,15 @@
   <PARAM id="Zero2Conj" value="1.0"/>
   <PARAM id="Zero2Imag" value="0.0"/>
   <PARAM id="Zero2Real" value="1.192092895507812e-7"/>
-  <PARAM id="Zero3Bool" value="0.0"/>
-  <PARAM id="Zero3Conj" value="0.0"/>
+  <PARAM id="Zero3Bool" value="1.0"/>
+  <PARAM id="Zero3Conj" value="1.0"/>
   <PARAM id="Zero3Imag" value="0.0"/>
   <PARAM id="Zero3Real" value="1.192092895507812e-7"/>
   <PARAM id="Zero4Bool" value="0.0"/>
   <PARAM id="Zero4Conj" value="0.0"/>
   <PARAM id="Zero4Imag" value="0.0"/>
   <PARAM id="Zero4Real" value="1.192092895507812e-7"/>
-  <PARAM id="b0Value" value="-67.5"/>
+  <PARAM id="b0Value" value="-95.76899719238281"/>
   <PARAM id="limiterBool" value="1.0"/>
   <PARAM id="poleProtectBool" value="1.0"/>
 </FilterDeMystefierVTS>

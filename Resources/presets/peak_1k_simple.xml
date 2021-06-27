@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<FilterDeMystefierVTS version="0.1.0" presetname="ee" bank="User" category="Vocals">
+<FilterDeMystefierVTS version="0.1.0" presetname="peak_1k_simple" bank="User" category="Audio Filter">
   <PARAM id="Pole1Bool" value="1.0"/>
   <PARAM id="Pole1Conj" value="1.0"/>
-  <PARAM id="Pole1Imag" value="0.1000000014901161"/>
-  <PARAM id="Pole1Real" value="0.9860000610351562"/>
-  <PARAM id="Pole2Bool" value="1.0"/>
-  <PARAM id="Pole2Conj" value="1.0"/>
-  <PARAM id="Pole2Imag" value="0.3170000016689301"/>
-  <PARAM id="Pole2Real" value="0.9360001087188721"/>
+  <PARAM id="Pole1Imag" value="0.1200000047683716"/>
+  <PARAM id="Pole1Real" value="0.9530000686645508"/>
+  <PARAM id="Pole2Bool" value="0.0"/>
+  <PARAM id="Pole2Conj" value="0.0"/>
+  <PARAM id="Pole2Imag" value="0.0"/>
+  <PARAM id="Pole2Real" value="0.1520000696182251"/>
   <PARAM id="Pole3Bool" value="0.0"/>
   <PARAM id="Pole3Conj" value="0.0"/>
   <PARAM id="Pole3Imag" value="0.0"/>
-  <PARAM id="Pole3Real" value="0.9860000610351562"/>
+  <PARAM id="Pole3Real" value="1.192092895507812e-7"/>
   <PARAM id="Pole4Bool" value="0.0"/>
   <PARAM id="Pole4Conj" value="0.0"/>
   <PARAM id="Pole4Imag" value="0.0"/>
@@ -20,11 +20,11 @@
   <PARAM id="Zero1Bool" value="1.0"/>
   <PARAM id="Zero1Conj" value="1.0"/>
   <PARAM id="Zero1Imag" value="0.0"/>
-  <PARAM id="Zero1Real" value="1.192092895507812e-7"/>
-  <PARAM id="Zero2Bool" value="1.0"/>
-  <PARAM id="Zero2Conj" value="1.0"/>
+  <PARAM id="Zero1Real" value="0.880000114440918"/>
+  <PARAM id="Zero2Bool" value="0.0"/>
+  <PARAM id="Zero2Conj" value="0.0"/>
   <PARAM id="Zero2Imag" value="0.0"/>
-  <PARAM id="Zero2Real" value="1.192092895507812e-7"/>
+  <PARAM id="Zero2Real" value="0.218000054359436"/>
   <PARAM id="Zero3Bool" value="0.0"/>
   <PARAM id="Zero3Conj" value="0.0"/>
   <PARAM id="Zero3Imag" value="0.0"/>
@@ -33,7 +33,7 @@
   <PARAM id="Zero4Conj" value="0.0"/>
   <PARAM id="Zero4Imag" value="0.0"/>
   <PARAM id="Zero4Real" value="1.192092895507812e-7"/>
-  <PARAM id="b0Value" value="-67.5"/>
+  <PARAM id="b0Value" value="1.154006958007812"/>
   <PARAM id="limiterBool" value="1.0"/>
   <PARAM id="poleProtectBool" value="1.0"/>
 </FilterDeMystefierVTS>
