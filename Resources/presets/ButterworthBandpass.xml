@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<FilterDeMystefierVTS version="0.1.0" presetname="butterworthBandpass" bank="User"
+<FilterDeMystefierVTS version="0.1.0" presetname="ButterworthBandpass" bank="User"
                       category="Classic Cut">
   <PARAM id="Pole1Bool" value="1.0"/>
   <PARAM id="Pole1Conj" value="1.0"/>

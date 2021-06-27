@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<FilterDeMystefierVTS version="0.1.0" presetname="Schwa (open mouth)" bank="User" category="Vocals">
+<FilterDeMystefierVTS version="0.1.0" presetname="Schwa_(open_mouth)" bank="User" category="Vocals">
   <PARAM id="Pole1Bool" value="1.0"/>
   <PARAM id="Pole1Conj" value="1.0"/>
   <PARAM id="Pole1Imag" value="0.3180000185966492"/>

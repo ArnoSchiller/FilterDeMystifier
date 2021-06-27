@@ -4,7 +4,7 @@
 # `project()` command. `project()` sets up some helpful variables that describe source/binary
 # directories, and the current project version. This is a standard CMake command.
 
-project(FILTERDEMYSTIFIER VERSION 0.1.0)
+project(FILTERDEMYSTIFIER VERSION 1.0.0)
 
 # `VST3_CATEGORIES`
 #  - Should be one or more, separated by spaces, of the following: `Fx`, `Instrument`, `Analyzer`,
