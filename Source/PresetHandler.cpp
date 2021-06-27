@@ -473,7 +473,7 @@ void PresetComponent::itemchanged()
 	m_presetHandler.loadPresetAndActivate(itemname);
 	
 	m_presetHandler.setPoleProtection(true);
-	//m_presetHandler.setPoleProtection(m_presetHandler.getPoleProtection());
+	m_presetHandler.setLimiter(true);
 
 	m_somethingchanged = false;
 	// update PN component

@@ -103,6 +103,11 @@ public:
 		m_vts->getParameter(paramPoleProtectBool.ID)->setValue(isActivated);
 	}
 
+	void setLimiter(bool isActivated)
+	{
+		m_vts->getParameter(paramLimiterBool.ID)->setValue(isActivated);
+	}
+
 // new methods for categories
 	void addCategory(String newCat);
 	void addCategory(StringArray newCat);

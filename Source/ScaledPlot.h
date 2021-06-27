@@ -57,7 +57,7 @@ public:
         m_startPosX(0), m_endPosX(1), m_startPosY(0), m_endPosY(1), 
         m_minValueX(0.0), m_maxValueX(10.0), m_valueStepX(1.0),
         m_minValueY(0.0), m_maxValueY(10.0), m_valueStepY(1.0),
-        m_axisLabelX("x-axis"), m_axisLabelY("y-axis"),
+        m_axisLabelX("x-axis"), m_axisLabelY("y-axis"), m_axisLabelLogX("x-axis (log)"),
         m_withAxisDescriotion(true), m_axisStyle(axisStyles::rect),
         m_isLogScaleActivated(false)
     {
@@ -196,11 +196,18 @@ protected:
      
         // X axis
         double valueX = m_minValueX;
+
+        String xTickText;
         while (valueX <= m_maxValueX)
         {
             int posX = scaleToCoordsX(valueX);
             g.drawLine(posX, m_startPosY, posX, m_endPosY, LINEWIDH_MEDIUM);
-            g.drawText(String(valueX), posX - AXIS_TEXT_WIDTH / 2,
+            int xTick = int(pow(10,valueX));
+            
+            if (xTick > 1000) { xTickText = String(xTick / 1000) + "k"; }
+            else { xTickText = String(xTick); }
+
+            g.drawText(xTickText, posX - AXIS_TEXT_WIDTH / 2,
                 m_endPosY , AXIS_TEXT_WIDTH, AXIS_TEXT_HEIGHT, 
                 Justification::centred);
 
@@ -289,8 +296,14 @@ protected:
         g.fillPath(p);
 
         // x axis
-        g.drawText(m_axisLabelX, m_startPosX, m_endPosY + AXIS_TEXT_HEIGHT, 
-            m_endPosX - m_startPosX, AXIS_DESCRIPTION_HEIGHT, Justification::centred);
+        if (m_isLogScaleActivated) {
+            g.drawText(m_axisLabelLogX, m_startPosX, m_endPosY + AXIS_TEXT_HEIGHT, 
+                        m_endPosX - m_startPosX, AXIS_DESCRIPTION_HEIGHT, Justification::centred);
+        } else {
+            g.drawText(m_axisLabelX, m_startPosX, m_endPosY + AXIS_TEXT_HEIGHT, 
+                        m_endPosX - m_startPosX, AXIS_DESCRIPTION_HEIGHT, Justification::centred);
+        }
+        
     }
 
     float scaleToValueX(int pos)
@@ -371,6 +384,7 @@ protected:
     Font m_font;
 
     String m_axisLabelX;
+    String m_axisLabelLogX;
     String m_axisLabelY;
 
     // style setter
